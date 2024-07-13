@@ -37,7 +37,7 @@ struct Provider: TimelineProvider {
         guard let defaults = UserDefaults(suiteName: "group.com.yourcompany.yourapp") else { return nil }
         let value = defaults.bool(forKey: "IsOn")
 
-        Logger.sendLog(message: "読み込めたが,value", value)
+        Logger.sendLog(message: "--------読み込めたが,value", value, "defaults", defaults)
 
         return value
     }

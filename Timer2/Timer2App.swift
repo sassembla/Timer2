@@ -56,7 +56,9 @@ struct Timer2App: App {
             Logger.sendLog(message: "保存できてない isOn", isOn)
             return
         }
+
         defaults.set(isOn, forKey: "IsOn")
-        Logger.sendLog(message: "保存できている isOn", isOn)
+        let value = defaults.bool(forKey: "IsOn")
+        Logger.sendLog(message: "--書き込めた isOn", isOn, "defaults", defaults, "value", value)
     }
 }
