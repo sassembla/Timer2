@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Timer
+//  Timer2
 //
 //  Created by aimer on 2024/07/13.
 //
