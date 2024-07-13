@@ -14,6 +14,12 @@
 		221DA7EC2C42189100F7D759 /* Timer2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA7EB2C42189100F7D759 /* Timer2Tests.swift */; };
 		221DA7F62C42189100F7D759 /* Timer2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA7F52C42189100F7D759 /* Timer2UITests.swift */; };
 		221DA7F82C42189100F7D759 /* Timer2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA7F72C42189100F7D759 /* Timer2UITestsLaunchTests.swift */; };
+		221DA80B2C4218E300F7D759 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 221DA80A2C4218E300F7D759 /* WidgetKit.framework */; };
+		221DA80D2C4218E300F7D759 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 221DA80C2C4218E300F7D759 /* SwiftUI.framework */; };
+		221DA8102C4218E300F7D759 /* Timer2WidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA80F2C4218E300F7D759 /* Timer2WidgetBundle.swift */; };
+		221DA8122C4218E300F7D759 /* Timer2Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA8112C4218E300F7D759 /* Timer2Widget.swift */; };
+		221DA8142C4218E400F7D759 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 221DA8132C4218E400F7D759 /* Assets.xcassets */; };
+		221DA8192C4218E400F7D759 /* Timer2WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 221DA8082C4218E300F7D759 /* Timer2WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +37,28 @@
 			remoteGlobalIDString = 221DA7D52C42189000F7D759;
 			remoteInfo = Timer2;
 		};
+		221DA8172C4218E400F7D759 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 221DA7CE2C42189000F7D759 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 221DA8072C4218E300F7D759;
+			remoteInfo = Timer2WidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		221DA81A2C4218E400F7D759 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				221DA8192C4218E400F7D759 /* Timer2WidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		221DA7D62C42189000F7D759 /* Timer2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timer2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,6 +72,14 @@
 		221DA7F12C42189100F7D759 /* Timer2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Timer2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		221DA7F52C42189100F7D759 /* Timer2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer2UITests.swift; sourceTree = "<group>"; };
 		221DA7F72C42189100F7D759 /* Timer2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer2UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		221DA8082C4218E300F7D759 /* Timer2WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Timer2WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		221DA80A2C4218E300F7D759 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		221DA80C2C4218E300F7D759 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		221DA80F2C4218E300F7D759 /* Timer2WidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer2WidgetBundle.swift; sourceTree = "<group>"; };
+		221DA8112C4218E300F7D759 /* Timer2Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer2Widget.swift; sourceTree = "<group>"; };
+		221DA8132C4218E400F7D759 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		221DA8152C4218E400F7D759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		221DA8162C4218E400F7D759 /* Timer2Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timer2Widget.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +104,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		221DA8052C4218E300F7D759 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				221DA80D2C4218E300F7D759 /* SwiftUI.framework in Frameworks */,
+				221DA80B2C4218E300F7D759 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +122,8 @@
 				221DA7D82C42189000F7D759 /* Timer2 */,
 				221DA7EA2C42189100F7D759 /* Timer2Tests */,
 				221DA7F42C42189100F7D759 /* Timer2UITests */,
+				221DA80E2C4218E300F7D759 /* Timer2Widget */,
+				221DA8092C4218E300F7D759 /* Frameworks */,
 				221DA7D72C42189000F7D759 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +134,7 @@
 				221DA7D62C42189000F7D759 /* Timer2.app */,
 				221DA7E72C42189100F7D759 /* Timer2Tests.xctest */,
 				221DA7F12C42189100F7D759 /* Timer2UITests.xctest */,
+				221DA8082C4218E300F7D759 /* Timer2WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,6 +176,27 @@
 			path = Timer2UITests;
 			sourceTree = "<group>";
 		};
+		221DA8092C4218E300F7D759 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				221DA80A2C4218E300F7D759 /* WidgetKit.framework */,
+				221DA80C2C4218E300F7D759 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		221DA80E2C4218E300F7D759 /* Timer2Widget */ = {
+			isa = PBXGroup;
+			children = (
+				221DA80F2C4218E300F7D759 /* Timer2WidgetBundle.swift */,
+				221DA8112C4218E300F7D759 /* Timer2Widget.swift */,
+				221DA8132C4218E400F7D759 /* Assets.xcassets */,
+				221DA8152C4218E400F7D759 /* Info.plist */,
+				221DA8162C4218E400F7D759 /* Timer2Widget.entitlements */,
+			);
+			path = Timer2Widget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,10 +207,12 @@
 				221DA7D22C42189000F7D759 /* Sources */,
 				221DA7D32C42189000F7D759 /* Frameworks */,
 				221DA7D42C42189000F7D759 /* Resources */,
+				221DA81A2C4218E400F7D759 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				221DA8182C4218E400F7D759 /* PBXTargetDependency */,
 			);
 			name = Timer2;
 			productName = Timer2;
@@ -185,6 +255,23 @@
 			productReference = 221DA7F12C42189100F7D759 /* Timer2UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		221DA8072C4218E300F7D759 /* Timer2WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 221DA81D2C4218E400F7D759 /* Build configuration list for PBXNativeTarget "Timer2WidgetExtension" */;
+			buildPhases = (
+				221DA8042C4218E300F7D759 /* Sources */,
+				221DA8052C4218E300F7D759 /* Frameworks */,
+				221DA8062C4218E300F7D759 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Timer2WidgetExtension;
+			productName = Timer2WidgetExtension;
+			productReference = 221DA8082C4218E300F7D759 /* Timer2WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -206,6 +293,9 @@
 						CreatedOnToolsVersion = 15.4;
 						TestTargetID = 221DA7D52C42189000F7D759;
 					};
+					221DA8072C4218E300F7D759 = {
+						CreatedOnToolsVersion = 15.4;
+					};
 				};
 			};
 			buildConfigurationList = 221DA7D12C42189000F7D759 /* Build configuration list for PBXProject "Timer2" */;
@@ -224,6 +314,7 @@
 				221DA7D52C42189000F7D759 /* Timer2 */,
 				221DA7E62C42189100F7D759 /* Timer2Tests */,
 				221DA7F02C42189100F7D759 /* Timer2UITests */,
+				221DA8072C4218E300F7D759 /* Timer2WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -249,6 +340,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		221DA8062C4218E300F7D759 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				221DA8142C4218E400F7D759 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +380,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		221DA8042C4218E300F7D759 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				221DA8122C4218E300F7D759 /* Timer2Widget.swift in Sources */,
+				221DA8102C4218E300F7D759 /* Timer2WidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -293,6 +401,11 @@
 			isa = PBXTargetDependency;
 			target = 221DA7D52C42189000F7D759 /* Timer2 */;
 			targetProxy = 221DA7F22C42189100F7D759 /* PBXContainerItemProxy */;
+		};
+		221DA8182C4218E400F7D759 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 221DA8072C4218E300F7D759 /* Timer2WidgetExtension */;
+			targetProxy = 221DA8172C4218E400F7D759 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -418,6 +531,7 @@
 		221DA7FC2C42189100F7D759 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Timer2/Timer2.entitlements;
@@ -445,6 +559,7 @@
 		221DA7FD2C42189100F7D759 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Timer2/Timer2.entitlements;
@@ -541,6 +656,62 @@
 			};
 			name = Release;
 		};
+		221DA81B2C4218E400F7D759 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = Timer2Widget/Timer2Widget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3T495L69P7;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Timer2Widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Timer2Widget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kissaki.test.Timer2.Timer2Widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		221DA81C2C4218E400F7D759 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = Timer2Widget/Timer2Widget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3T495L69P7;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Timer2Widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Timer2Widget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kissaki.test.Timer2.Timer2Widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -576,6 +747,15 @@
 			buildConfigurations = (
 				221DA8022C42189100F7D759 /* Debug */,
 				221DA8032C42189100F7D759 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		221DA81D2C4218E400F7D759 /* Build configuration list for PBXNativeTarget "Timer2WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				221DA81B2C4218E400F7D759 /* Debug */,
+				221DA81C2C4218E400F7D759 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
