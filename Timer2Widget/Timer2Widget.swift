@@ -35,7 +35,11 @@ struct Provider: TimelineProvider {
 
     func getIsOnFromAppGroup() -> Bool? {
         guard let defaults = UserDefaults(suiteName: "group.com.yourcompany.yourapp") else { return nil }
-        return defaults.bool(forKey: "IsOn")
+        let value = defaults.bool(forKey: "IsOn")
+
+        Logger.sendLog(message: "読み込めたが,value", value)
+
+        return value
     }
 }
 

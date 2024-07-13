@@ -37,7 +37,7 @@ struct Timer2App: App {
                                     let next = !isOnCurrent
                                     Logger.sendLog(message: "isOnCurrent", isOnCurrent, "next", next)
                                     // 次はisOnCurrent が !isOnCurrentになる
-                                    saveIsOnToAppGroup(next)
+                                    saveIsOnToAppGroup(isOn: next)
                                 }
                             }
                         }
@@ -51,8 +51,12 @@ struct Timer2App: App {
         }
     }
 
-    func saveIsOnToAppGroup(_ isOn: Bool) {
-        let defaults = UserDefaults(suiteName: "group.com.yourcompany.yourapp")
-        defaults?.set(isOn, forKey: "IsOn")
+    func saveIsOnToAppGroup(isOn: Bool) {
+        guard let defaults = UserDefaults(suiteName: "group.com.yourcompany.yourapp") else {
+            Logger.sendLog(message: "保存できてない isOn", isOn)
+            return
+        }
+        defaults.set(isOn, forKey: "IsOn")
+        Logger.sendLog(message: "保存できている isOn", isOn)
     }
 }
