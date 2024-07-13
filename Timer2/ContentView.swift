@@ -7,9 +7,8 @@
 
 import SwiftUI
 
+// App側のコンテンツのビュー、今回は不可視でいいので、値を持たないようにしていく。
 struct ContentView: View {
-    @Binding var isOn: Bool
-
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -35,5 +34,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(isOn: .constant(false))
+    ContentView()
 }

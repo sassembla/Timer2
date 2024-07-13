@@ -22,19 +22,20 @@ struct Provider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         Logger.sendLog(message: "ProviderのgetTimeline関数着火")
+        guard let isOn = getIsOnFromAppGroup() else { return } // ファイルがヒットしなかったら何もしない
         var entries: [SimpleEntry] = []
+        Logger.sendLog(message: "処理を抜けた先で、isOn", isOn)
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, isOn: true)
-            entries.append(entry)
-            break
-        }
+        let entry = SimpleEntry(date: .now, isOn: isOn)
+        entries.append(entry)
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
+    }
+
+    func getIsOnFromAppGroup() -> Bool? {
+        guard let defaults = UserDefaults(suiteName: "group.com.yourcompany.yourapp") else { return nil }
+        return defaults.bool(forKey: "IsOn")
     }
 }
 
@@ -57,32 +58,35 @@ struct Timer2WidgetEntryView: View {
 
     var body: some View {
         VStack {
-            Toggle(isOn: $_isOn) {
-                if entry.isOn {
-                    Text("on")
-                } else {
-                    Text("off")
+            // リンク
+            Link(destination: URL(string: "mywidget://toggle?ison=" + String(entry.isOn) + "&other=false")!) {
+                Toggle(isOn: $_isOn) {
+                    if entry.isOn {
+                        Text("on")
+                    } else {
+                        Text("off")
+                    }
+                }
+                .toggleStyle(.automatic) // ボタン以外はwidgetで動かない。まあ切り替えられればそれでいいので文句はない
+                .onAppear {
+                    self._isOn = entry.isOn // 値を反映させる
+//                    Logger.sendLog(message: "トグル初期化、_isOn", _isOn, "entry.isOn", entry.isOn)
+                }
+                .onChange(of: self._isOn) { old, new in // TODO: このブロックに機能してほしいが機能しない
+                    Logger.sendLog(message: "トグル変更、old", old, "new", new)
                 }
             }
-            .onAppear {
-                self._isOn = entry.isOn
-            }
-            .onChange(of: entry.isOn) { a, b in
-                Logger.sendLog(message: "トグル変更、a", a, "b", b)
-            }
-
-//            // リンク これもデザインできるが、さて。
-//            Link(destination: URL(string: "mywidget://toggle")!) { // TODO: これは機能していないかと思ったが今は動いていそう、今回は使わない。
-//                Text("スイッチを切り替える")
-//                    .padding()
-//                    .background(Color.blue)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(8)
-//            }
 
 //            // ボタン 純粋なインタラクションとして制御されるらしい。このボタンを押されたかどうかというI/Oができるといいんだけど。
 //            Button(action: {
-//                Logger.sendLog(message: "Buttonw_was_tapped")
+//                Logger.sendLog(message: "ボタンをタップした")
+//                let scheme = true ? "mywidget://toggleOn" : "mywidget://toggleOff"
+//                if let url = URL(string: scheme) {
+//                    // WidgetからアプリケーションへURLスキームを送信するためにLinkを使用
+//                    _ = Link(destination: url) {
+//                        EmptyView()
+//                    }.frame(width: 0, height: 0)
+//                }
 //            }) {
 //                Text("ボタンを押すTimer2WidgetEntryView")
 //                    .padding()
@@ -90,6 +94,15 @@ struct Timer2WidgetEntryView: View {
 //                    .foregroundColor(.white)
 //                    .cornerRadius(8)
 //            }
+        }.onTapGesture { // TODO: このブロックに機能してほしいが機能しない
+            self._isOn = !self._isOn
+            _ = Link(destination: URL(string: "mywidget://toggle")!) {
+                Text("スイッチを切り替える")
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+            }
         }
     }
 }
