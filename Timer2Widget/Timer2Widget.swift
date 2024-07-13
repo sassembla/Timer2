@@ -66,9 +66,11 @@ struct Timer2WidgetEntryView: View {
             Link(destination: URL(string: "mywidget://toggle?ison=" + String(entry.isOn) + "&other=false")!) {
                 Toggle(isOn: $_isOn) {
                     if entry.isOn {
-                        Text("on")
+                        Text("ON")
+                            .foregroundStyle(.white)
                     } else {
-                        Text("off")
+                        Text("OFF")
+                            .foregroundStyle(.white)
                     }
                 }
                 .toggleStyle(.automatic) // ボタン以外はwidgetで動かない。まあ切り替えられればそれでいいので文句はない
