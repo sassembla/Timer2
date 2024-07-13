@@ -1,13 +1,17 @@
+
 import http.server
 import socketserver
 import logging
+
+from urllib.parse import unquote
 
 PORT = 8000
 
 class RequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         # logging.info(f"Received GET request from {self.client_address}")
-        logging.info(f"log: {self.path}")
+        unq = unquote(self.path)
+        logging.info(f"log: {unq}")
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
