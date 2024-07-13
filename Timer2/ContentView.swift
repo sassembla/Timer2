@@ -18,7 +18,7 @@ struct ContentView: View {
             Text("Hello,world!")
             Button(action: {
 //                showAlert = true
-                Logger.sendLog(message: "ffffff")
+                Logger.sendLog(message: "App側のContentViewのボタンが押された")
             }) {
                 Text("ボタンを押すContentView")
                     .padding()
@@ -27,25 +27,10 @@ struct ContentView: View {
                     .cornerRadius(8)
             }
         }
+        .onAppear(perform: {
+            Logger.sendLog(message: "App側のContentViewが表示された")
+        })
         .padding()
-    }
-
-    func sendHTTPRequest() {
-        guard let url = URL(string: "http://127.0.0.1:8000") else { return }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-
-        URLSession.shared.dataTask(with: request) { data, _, error in
-            if let error = error {
-                print("HTTPリクエストエラー: \(error.localizedDescription)")
-                return
-            }
-
-            if let data = data {
-                print("HTTPレスポンスデータ: \(String(data: data, encoding: .utf8) ?? "")")
-            }
-        }.resume()
     }
 }
 

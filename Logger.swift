@@ -8,8 +8,10 @@
 import Foundation
 
 class Logger {
-    static func sendLog(message: String) {
-        guard let url = URL(string: "http://127.0.0.1:8000/" + message) else { return }
+    static func sendLog(message: Any...) {
+        let stringMessages = message.map { String(describing: $0) }
+        let concatenatedMessage = stringMessages.joined(separator: " ")
+        guard let url = URL(string: "http://127.0.0.1:8000/" + concatenatedMessage) else { return }
 
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
