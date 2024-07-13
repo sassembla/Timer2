@@ -11,23 +11,34 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello,world!")
-            Button(action: {
-//                showAlert = true
-                Logger.sendLog(message: "App側のContentViewのボタンが押された")
-            }) {
-                Text("ボタンを押すContentView")
-                    .padding()
-                    .background(Color.green)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-            }
+//            Image(systemName: "globe")
+//                .imageScale(.large)
+//                .foregroundStyle(.tint)
+//            Text("Hello,world!")
+//            Button(action: {
+            ////                showAlert = true
+//                Logger.sendLog(message: "App側のContentViewのボタンが押された")
+//            }) {
+//                Text("ボタンを押すContentView")
+//                    .padding()
+//                    .background(Color.green)
+//                    .foregroundColor(.white)
+//                    .cornerRadius(8)
+//            }
         }
         .onAppear(perform: {
             Logger.sendLog(message: "App側のContentViewが表示された")
+
+            for window in NSApp.windows {
+                window.close()
+                Logger.sendLog(message: "closeしてる")
+            }
+
+            // hideを実行するタイミングで確実にwidgetのアップデートが行われているっぽい。exitよりはマシな気配。
+            NSApp.hide(nil)
+        })
+        .onDisappear(perform: {
+            exit(0)
         })
         .padding()
     }

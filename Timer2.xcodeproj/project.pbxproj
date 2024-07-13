@@ -22,6 +22,7 @@
 		221DA8192C4218E400F7D759 /* Timer2WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 221DA8082C4218E300F7D759 /* Timer2WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		221DA81F2C427CB400F7D759 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA81E2C427CB400F7D759 /* Logger.swift */; };
 		221DA8202C427CB400F7D759 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA81E2C427CB400F7D759 /* Logger.swift */; };
+		221DA8222C42ECDD00F7D759 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA8212C42ECDD00F7D759 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		221DA8152C4218E400F7D759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		221DA8162C4218E400F7D759 /* Timer2Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timer2Widget.entitlements; sourceTree = "<group>"; };
 		221DA81E2C427CB400F7D759 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		221DA8212C42ECDD00F7D759 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 		221DA7D82C42189000F7D759 /* Timer2 */ = {
 			isa = PBXGroup;
 			children = (
+				221DA8212C42ECDD00F7D759 /* AppDelegate.swift */,
 				221DA7D92C42189000F7D759 /* Timer2App.swift */,
 				221DA7DB2C42189000F7D759 /* ContentView.swift */,
 				221DA7DD2C42189100F7D759 /* Assets.xcassets */,
@@ -362,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				221DA8222C42ECDD00F7D759 /* AppDelegate.swift in Sources */,
 				221DA7DC2C42189000F7D759 /* ContentView.swift in Sources */,
 				221DA81F2C427CB400F7D759 /* Logger.swift in Sources */,
 				221DA7DA2C42189000F7D759 /* Timer2App.swift in Sources */,

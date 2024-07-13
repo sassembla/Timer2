@@ -14,9 +14,6 @@ struct Timer2App: App {
         Logger.sendLog(message: "Timer2Appの起動コードに到達")
     }
 
-    // オンメモリで保持する値
-    private var isOn = false
-
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -45,7 +42,10 @@ struct Timer2App: App {
                         // ウィジェットの再ロードをトリガーする
                         WidgetCenter.shared.reloadAllTimelines()
 
-                        Logger.sendLog(message: "Timer2Appからの再ロード！ これで要素を更新できる。 isOn", isOn, "url", url)
+                        Logger.sendLog(message: "Timer2Appからの再ロード！ これで要素を更新できる", "url", url)
+
+                        // なんとここで終了させると画面に一切見えずとも動作する、野蛮すぎるのでダメ。
+                        // exit(0)
                     }
                 }
         }
