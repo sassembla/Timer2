@@ -41,16 +41,31 @@ struct SimpleEntry: TimelineEntry {
 
 struct Timer2WidgetEntryView: View {
     var entry: Provider.Entry
+    @State private var isOn: Bool = false
 
     var body: some View {
         VStack {
-            HStack {
-                Text("Time:")
-                Text(entry.date, style: .time)
+//            HStack {
+//                Text("Time:")
+//                Text(entry.date, style: .time)
+//            }
+//
+//            Text("Emoji:")
+//            Text(entry.emoji)
+
+            Toggle(isOn: $isOn) {
+                HStack {
+                    Image(systemName: isOn ? "lightbulb.fill" : "lightbulb.slash.fill")
+                        .foregroundColor(isOn ? .yellow : .gray)
+//                    Text("スイッチを切り替え")
+                }
             }
 
-            Text("Emoji:")
-            Text(entry.emoji)
+            if isOn {
+                Text("スイッチはオンです")
+            } else {
+                Text("スイッチはオフです")
+            }
         }
     }
 }
