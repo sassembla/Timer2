@@ -24,7 +24,7 @@ struct Provider: TimelineProvider {
         Logger.sendLog(message: "AppからWidgetにデータが届いた。ProviderのgetTimeline関数着火")
 
         // 特定のキーを特定の型で読み出す
-        guard let isOn = AppGroupAccessor.readFromAppGroupUserDefaults(forKey: "IsOn") else {
+        guard let isOn: Bool = AppGroupAccessor.readFromAppGroupUserDefaults(appGroupSuiteName: Constants.AppGroupSuiteName, forKey: "IsOn", as: Bool.self) else {
             return
         }
 
@@ -61,12 +61,14 @@ struct Timer2WidgetEntryView: View {
     var body: some View {
         VStack {
             // リンクとして機能するtoggle
-            Link(destination: URL(string: "mywidget://toggle?ison=" + String(entry.isOn))!) {
+            Link(destination: URLSchemeEmitter.emitIdentifiedScheme(scheme: Constants.URLScheme, host: "toggle", key: "ison", value: String(entry.isOn))) {
                 Toggle(isOn: $_isOn) {
+                    // オンなのでON時の表示を行う。
                     if entry.isOn {
                         Text("ON")
                             .foregroundStyle(.white)
                     } else {
+                        // OFF時の表示
                         Text("OFF")
                             .foregroundStyle(.white)
                     }

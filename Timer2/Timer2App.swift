@@ -15,7 +15,7 @@ struct Timer2App: App {
     }
 
     var body: some Scene {
-//        Settings {// ウィンドウを出さない形のアプリケーションにすると、なんとonOpenが発生しない。これはAppDelegateに切り替えた場合でも発生していて、難しい。Windowを出すと必ず動作する。
+//        Settings {// ウィンドウを出さない形のアプリケーションにすると、なんとonOpenURLが発生しない。これはAppDelegateに切り替えた場合でも発生していて、難しい。Windowを出すと必ず動作する。
         WindowGroup {
             ContentView()
         }
@@ -42,33 +42,37 @@ struct ContentView: View {
             .onOpenURL { url in
 
                 // mywidget://toggle?ison=true などが来る
-                // TODO: ボタン単位でのイベント名とその値をURLSchemeに仕込むことができるので、read-writeを行う部分を関数化しよう。
-                if url.scheme == "mywidget", url.host == "toggle" {
-                    // クエリパラメータを分解
-                    if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
-                       let queryItems = components.queryItems
-                    {
-                        for queryItem in queryItems {
-                            let query = queryItem.name
-                            let value = queryItem.value
-                            if query == "ison" {
-                                guard let isOnCurrent = (value as? NSString)?.boolValue else { continue }
+                guard let (host, queryItems) = URLSchemeEmitter.readQueryItemsFromURL(url: url, scheme: Constants.URLScheme) else {
+                    Logger.sendLog(message: "該当するwidgetへのデータではないものが届いた url", url)
+                    return
+                }
 
-                                // 送り込まれてきた値を反転した値を書き込む。こうすることで、UIの状態をそのまま入力として信じることができる。
-                                let next = !isOnCurrent
-                                Logger.sendLog(message: "isOnCurrent", isOnCurrent, "next", next)
+                // 例えば、URLSchemeのhost値によってどんなイベントが届いたか分類する。
+                switch host {
+                case "toggle":
+                    // 取り出したqueryの値を解析する
+                    for queryItem in queryItems {
+                        let query = queryItem.name
+                        let value = queryItem.value
+                        if query == "ison" {
+                            guard let isOnCurrent = (value as? NSString)?.boolValue else { continue }
 
-                                // 書き込みを行う
-                                AppGroupAccessor.writeToAppGroupUserDefaults(key: "IsOn", value: next)
-                            }
+                            // 送り込まれてきた値を反転した値を書き込む。こうすることで、UIの状態をそのまま入力として信じることができる。
+                            let next = !isOnCurrent
+
+                            // 書き込みを行う
+                            AppGroupAccessor.writeToAppGroupUserDefaults(appGroupSuiteName: Constants.AppGroupSuiteName, key: "IsOn", value: next)
                         }
                     }
-
-                    // ウィジェットの再ロードをトリガーする
-                    WidgetCenter.shared.reloadAllTimelines()
-
-                    Logger.sendLog(message: "Timer2Appからの再ロード！ これで要素を更新できる", "url", url)
+                default:
+                    Logger.sendLog(message: "該当するwidgetへのデータではないものが届いた")
+                    return
                 }
+
+                // ウィジェットの再ロードをトリガーする
+                WidgetCenter.shared.reloadAllTimelines()
+
+                Logger.sendLog(message: "Timer2App→Widetの再ロード依頼完了。このあとに対応するWidget側のgetTimelineが時間差で着火する。")
             }
     }
 }

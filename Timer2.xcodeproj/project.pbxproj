@@ -24,6 +24,10 @@
 		221DA8222C42ECDD00F7D759 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA8212C42ECDD00F7D759 /* AppDelegate.swift */; };
 		221DA8252C439F0E00F7D759 /* AppGroupAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA8242C439F0E00F7D759 /* AppGroupAccessor.swift */; };
 		221DA8262C439F0E00F7D759 /* AppGroupAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA8242C439F0E00F7D759 /* AppGroupAccessor.swift */; };
+		221DA8282C43A78200F7D759 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA8272C43A78200F7D759 /* Constants.swift */; };
+		221DA8292C43A78200F7D759 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA8272C43A78200F7D759 /* Constants.swift */; };
+		221DA82B2C43AB4800F7D759 /* URLSchemeEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA82A2C43AB4800F7D759 /* URLSchemeEmitter.swift */; };
+		221DA82C2C43AB4800F7D759 /* URLSchemeEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA82A2C43AB4800F7D759 /* URLSchemeEmitter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +90,8 @@
 		221DA81E2C427CB400F7D759 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		221DA8212C42ECDD00F7D759 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		221DA8242C439F0E00F7D759 /* AppGroupAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroupAccessor.swift; sourceTree = "<group>"; };
+		221DA8272C43A78200F7D759 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		221DA82A2C43AB4800F7D759 /* URLSchemeEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemeEmitter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +131,8 @@
 		221DA7CD2C42189000F7D759 = {
 			isa = PBXGroup;
 			children = (
+				221DA82A2C43AB4800F7D759 /* URLSchemeEmitter.swift */,
+				221DA8272C43A78200F7D759 /* Constants.swift */,
 				221DA8242C439F0E00F7D759 /* AppGroupAccessor.swift */,
 				221DA81E2C427CB400F7D759 /* Logger.swift */,
 				221DA7D82C42189000F7D759 /* Timer2 */,
@@ -366,6 +374,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				221DA8282C43A78200F7D759 /* Constants.swift in Sources */,
+				221DA82B2C43AB4800F7D759 /* URLSchemeEmitter.swift in Sources */,
 				221DA8222C42ECDD00F7D759 /* AppDelegate.swift in Sources */,
 				221DA81F2C427CB400F7D759 /* Logger.swift in Sources */,
 				221DA8252C439F0E00F7D759 /* AppGroupAccessor.swift in Sources */,
@@ -394,6 +404,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				221DA8292C43A78200F7D759 /* Constants.swift in Sources */,
+				221DA82C2C43AB4800F7D759 /* URLSchemeEmitter.swift in Sources */,
 				221DA8122C4218E300F7D759 /* Timer2Widget.swift in Sources */,
 				221DA8202C427CB400F7D759 /* Logger.swift in Sources */,
 				221DA8262C439F0E00F7D759 /* AppGroupAccessor.swift in Sources */,
