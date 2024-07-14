@@ -22,7 +22,14 @@ struct Provider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         Logger.sendLog(message: "AppからWidgetにデータが届いた。ProviderのgetTimeline関数着火")
-        guard let isOn = geFromAppGroupUserDefaults(forKey: "IsOn") else { return } // ファイルがヒットしなかったら何もしない
+
+        // 特定のキーを特定の型で読み出す
+        guard let isOn = AppGroupAccessor.readFromAppGroupUserDefaults(forKey: "IsOn") else {
+            return
+        }
+
+        // isOnはboolとして取り出せている
+
         var entries: [TimerEntry] = []
 
         let entry = TimerEntry(date: .now, isOn: isOn)
@@ -30,15 +37,6 @@ struct Provider: TimelineProvider {
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
-    }
-
-    // TODO: この関数をstaticにしてproject全体から触れるようにする
-    func geFromAppGroupUserDefaults(forKey: String) -> Bool? {
-        // TODO: AppGroupのファイルアクセス共有のための定数にする
-        guard let defaults = UserDefaults(suiteName: "group.com.yourcompany.yourapp") else { return nil }
-        let value = defaults.bool(forKey: forKey)
-
-        return value
     }
 }
 
