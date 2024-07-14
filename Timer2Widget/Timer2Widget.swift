@@ -9,42 +9,42 @@ import SwiftUI
 import WidgetKit
 
 struct Provider: TimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
+    func placeholder(in context: Context) -> TimerEntry {
         Logger.sendLog(message: "ProviderのplaceHolder関数着火")
-        return SimpleEntry(date: Date(), isOn: false)
+        return TimerEntry(date: Date(), isOn: false)
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+    func getSnapshot(in context: Context, completion: @escaping (TimerEntry) -> ()) {
         Logger.sendLog(message: "ProviderのgetSnapshot関数着火")
-        let entry = SimpleEntry(date: Date(), isOn: false)
+        let entry = TimerEntry(date: Date(), isOn: false)
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        Logger.sendLog(message: "ProviderのgetTimeline関数着火")
-        guard let isOn = getIsOnFromAppGroup() else { return } // ファイルがヒットしなかったら何もしない
-        var entries: [SimpleEntry] = []
-        Logger.sendLog(message: "処理を抜けた先で、isOn", isOn)
+        Logger.sendLog(message: "AppからWidgetにデータが届いた。ProviderのgetTimeline関数着火")
+        guard let isOn = geFromAppGroupUserDefaults(forKey: "IsOn") else { return } // ファイルがヒットしなかったら何もしない
+        var entries: [TimerEntry] = []
 
-        let entry = SimpleEntry(date: .now, isOn: isOn)
+        let entry = TimerEntry(date: .now, isOn: isOn)
         entries.append(entry)
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
 
-    func getIsOnFromAppGroup() -> Bool? {
+    // TODO: この関数をstaticにしてproject全体から触れるようにする
+    func geFromAppGroupUserDefaults(forKey: String) -> Bool? {
+        // TODO: AppGroupのファイルアクセス共有のための定数にする
         guard let defaults = UserDefaults(suiteName: "group.com.yourcompany.yourapp") else { return nil }
-        let value = defaults.bool(forKey: "IsOn")
-
-        Logger.sendLog(message: "--------読み込めたが,value", value, "defaults", defaults)
+        let value = defaults.bool(forKey: forKey)
 
         return value
     }
 }
 
-// タイムラインに利用している型、データのやり取りに使っているっぽい
-struct SimpleEntry: TimelineEntry {
+// タイムラインに利用している型、AppからOSを通じて、widgetの表示を更新する際にwidget側がpullする。
+// 特にAppやOSによって変質することはなく、widgetがread時に自分で整形する。
+struct TimerEntry: TimelineEntry {
     let date: Date
     let isOn: Bool
 }
@@ -56,14 +56,14 @@ struct Timer2WidgetEntryView: View {
     @State var _isOn: Bool = false
 
     init(entry: Provider.Entry) {
+        // widgetがUI表示するentryデータを更新する
         self.entry = entry
-        Logger.sendLog(message: "Timer2WidgetEntryViewのinitが呼ばれた。entryを書き換えている entry", entry, "isOn", _isOn)
     }
 
     var body: some View {
         VStack {
-            // リンク
-            Link(destination: URL(string: "mywidget://toggle?ison=" + String(entry.isOn) + "&other=false")!) {
+            // リンクとして機能するtoggle
+            Link(destination: URL(string: "mywidget://toggle?ison=" + String(entry.isOn))!) {
                 Toggle(isOn: $_isOn) {
                     if entry.isOn {
                         Text("ON")
@@ -73,41 +73,10 @@ struct Timer2WidgetEntryView: View {
                             .foregroundStyle(.white)
                     }
                 }
-                .toggleStyle(.automatic) // ボタン以外はwidgetで動かない。まあ切り替えられればそれでいいので文句はない
+                .toggleStyle(.automatic) // ボタン以外はmacOS SonomaのwidgetではUIが表示されず、動かない。まあ切り替えられればそれでいいので文句はない
                 .onAppear {
-                    self._isOn = entry.isOn // 値を反映させる
-//                    Logger.sendLog(message: "トグル初期化、_isOn", _isOn, "entry.isOn", entry.isOn)
+                    self._isOn = entry.isOn // 外部から渡ってくる初期値を反映させる
                 }
-                .onChange(of: self._isOn) { old, new in // TODO: このブロックに機能してほしいが機能しない
-                    Logger.sendLog(message: "トグル変更、old", old, "new", new)
-                }
-            }
-
-//            // ボタン 純粋なインタラクションとして制御されるらしい。このボタンを押されたかどうかというI/Oができるといいんだけど。
-//            Button(action: {
-//                Logger.sendLog(message: "ボタンをタップした")
-//                let scheme = true ? "mywidget://toggleOn" : "mywidget://toggleOff"
-//                if let url = URL(string: scheme) {
-//                    // WidgetからアプリケーションへURLスキームを送信するためにLinkを使用
-//                    _ = Link(destination: url) {
-//                        EmptyView()
-//                    }.frame(width: 0, height: 0)
-//                }
-//            }) {
-//                Text("ボタンを押すTimer2WidgetEntryView")
-//                    .padding()
-//                    .background(Color.green)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(8)
-//            }
-        }.onTapGesture { // TODO: このブロックに機能してほしいが機能しない
-            self._isOn = !self._isOn
-            _ = Link(destination: URL(string: "mywidget://toggle")!) {
-                Text("スイッチを切り替える")
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
             }
         }
     }
@@ -115,6 +84,7 @@ struct Timer2WidgetEntryView: View {
 
 // ウィジェットUIの本体の見た目をロードする部分
 struct Timer2Widget: Widget {
+    // この名称は外部へのIDになっており、正しくないものにするとdownstreamが滞る。
     let kind: String = "Timer2Widget"
 
     var body: some WidgetConfiguration {

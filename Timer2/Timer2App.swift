@@ -15,6 +15,7 @@ struct Timer2App: App {
     }
 
     var body: some Scene {
+//        Settings {
         WindowGroup {
             ContentView()
                 // 受け取り側のコード
@@ -61,4 +62,31 @@ struct Timer2App: App {
         let value = defaults.bool(forKey: "IsOn")
         Logger.sendLog(message: "--書き込めた isOn", isOn, "defaults", defaults, "value", value)
     }
+}
+
+// App側のコンテンツのビュー、今回は不可視でいいので、値を持たないようにしていく。
+// TODO: 一瞬だけめっちゃ小さいインジケーターを画面の真ん中に出せるといいなあって思う。アニメーション表示→hideまでが流れるようにできると良い。
+struct ContentView: View {
+    var body: some View {
+        VStack {}
+            .onAppear(perform: {
+                // App側のwindowは一切表示されないで欲しいので、開いていればcloseする。
+                for window in NSApp.windows {
+                    window.close()
+                }
+
+                // このコードを実行することでAppがhideされ、次回のwidgetの操作が実行された時、
+                // App側でreloadAllTimelinesを実行すると、widget側でgetTimelineがほぼ確実に即座に発生する。
+                // hideを実行することで、次のAppの起動がforeground化になり、そのタイミングで確実にwidgetのアップデートが行われているっぽい。exitよりはマシな気配。
+                NSApp.hide(nil)
+            })
+            .onDisappear(perform: {
+                exit(0)
+            })
+            .padding()
+    }
+}
+
+#Preview {
+    ContentView()
 }

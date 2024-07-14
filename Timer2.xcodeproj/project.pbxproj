@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		221DA7DA2C42189000F7D759 /* Timer2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA7D92C42189000F7D759 /* Timer2App.swift */; };
-		221DA7DC2C42189000F7D759 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA7DB2C42189000F7D759 /* ContentView.swift */; };
 		221DA7DE2C42189100F7D759 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 221DA7DD2C42189100F7D759 /* Assets.xcassets */; };
 		221DA7E12C42189100F7D759 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 221DA7E02C42189100F7D759 /* Preview Assets.xcassets */; };
 		221DA7EC2C42189100F7D759 /* Timer2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DA7EB2C42189100F7D759 /* Timer2Tests.swift */; };
@@ -66,7 +65,6 @@
 /* Begin PBXFileReference section */
 		221DA7D62C42189000F7D759 /* Timer2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timer2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		221DA7D92C42189000F7D759 /* Timer2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer2App.swift; sourceTree = "<group>"; };
-		221DA7DB2C42189000F7D759 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		221DA7DD2C42189100F7D759 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		221DA7E02C42189100F7D759 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		221DA7E22C42189100F7D759 /* Timer2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timer2.entitlements; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 			children = (
 				221DA8212C42ECDD00F7D759 /* AppDelegate.swift */,
 				221DA7D92C42189000F7D759 /* Timer2App.swift */,
-				221DA7DB2C42189000F7D759 /* ContentView.swift */,
 				221DA7DD2C42189100F7D759 /* Assets.xcassets */,
 				221DA7E22C42189100F7D759 /* Timer2.entitlements */,
 				221DA7DF2C42189100F7D759 /* Preview Content */,
@@ -366,7 +363,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				221DA8222C42ECDD00F7D759 /* AppDelegate.swift in Sources */,
-				221DA7DC2C42189000F7D759 /* ContentView.swift in Sources */,
 				221DA81F2C427CB400F7D759 /* Logger.swift in Sources */,
 				221DA7DA2C42189000F7D759 /* Timer2App.swift in Sources */,
 			);
