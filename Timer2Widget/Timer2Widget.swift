@@ -53,7 +53,7 @@ struct SimpleEntry: TimelineEntry {
 struct Timer2WidgetEntryView: View {
     var entry: Provider.Entry
 
-    @State var _isOn: Bool = false // = entry.isOn
+    @State var _isOn: Bool = false
 
     init(entry: Provider.Entry) {
         self.entry = entry

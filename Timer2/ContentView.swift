@@ -8,6 +8,7 @@
 import SwiftUI
 
 // App側のコンテンツのビュー、今回は不可視でいいので、値を持たないようにしていく。
+// TODO: 一瞬だけめっちゃ小さいインジケーターを画面の真ん中に出せるといいなあって思う。
 struct ContentView: View {
     var body: some View {
         VStack {
